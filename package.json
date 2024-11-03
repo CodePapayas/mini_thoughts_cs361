@@ -1,0 +1,22 @@
+{
+  "name": "mini_thoughts_cs361",
+  "version": "1.0.0",
+  "description": "A microblog that I am now building with VanillaJS/Express for CS361 as part of my Bachelor of Computer Science degree.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodePapayas/mini_thoughts_cs361.git"
+  },
+  "author": "Zach Wilkins-Olson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodePapayas/mini_thoughts_cs361/issues"
+  },
+  "homepage": "https://github.com/CodePapayas/mini_thoughts_cs361#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
