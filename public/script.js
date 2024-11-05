@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cancelButton = document.getElementById('cancelButton');
     if (cancelButton) {
         cancelButton.addEventListener('click', () => {
-            const userConfirmed = confirm('Are you sure you want to cancel?');
+            const userConfirmed = confirm('WARNING! Cancelling now will remove all of your work. Are you sure you want to cancel?');
             if (userConfirmed) {
                 window.location.href = '/';
             }
