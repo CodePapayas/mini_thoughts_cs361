@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/CodePapayas/mini_thoughts_cs361#readme",
   "dependencies": {
-    "express": "^4.21.1"
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.8.0"
   }
 }

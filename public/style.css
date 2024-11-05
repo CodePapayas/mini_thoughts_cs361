@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #e6e9ef;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-image: url('background.jpg');
+    background-repeat: repeat;
+}
+
+header {
+    background-color: #336699;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 4px solid #003366;
+}
+
+#userProfile img {
+    border: 5px solid #336699;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+#userProfile h2 {
+    color: #fff;
+    text-shadow: 1px 1px 2px #003366;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+article#controls {
+    background-color: #ffffff;
+    padding: 15px;
+    border: 2px solid #6699cc;
+    border-radius: 10px;
+    width: 70%;
+}
+
+article#controls legend {
+    font-weight: bold;
+    color: #336699;
+}
+
+#controls button {
+    background-color: #336699;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#controls button:hover {
+    background-color: #003366;
+}
+
+#newsFeed {
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 20px auto;
+    width: 70%;
+    border: 2px solid #6699cc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#newsFeed h2 {
+    color: #336699;
+}
+
+.post {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-bottom: 2px dotted #6699cc;
+    margin-bottom: 10px;
+}
+
+#friendsList {
+    background-color: #d1d9e6;
+    padding: 15px;
+    width: 25%;
+    border: 2px solid #336699;
+    margin-left: 20px;
+}
+
+#friendsList h2 {
+    color: #336699;
+}
+
+#friendsList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#friendsList li {
+    margin-bottom: 10px;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #6699cc;
+    border-radius: 5px;
+    background-color: #f0f4fa;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    clear: both;
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+#postList li {
+    list-style-type:disc;
+    padding: 10;
+    margin-bottom: 10px;
+    background-color: #6699cc;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}

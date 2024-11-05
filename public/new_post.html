@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div id="userProfile">
+            <img id="profilePicture" src="/images/placeholder.jpg" alt="User Profile Picture">
+            <h2 id="userName">User Name</h2>
+        </div>
+    </header>
+
+    <main>
+        <section id="controls">
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+            <form action="/" method="get">
+                <button type="submit">Home</button>
+            </form>
+        </section>
+
+        <section id="newPost">
+            <h2>New Post</h2>
+            <form id="newPostForm" action="/submitPost" method="POST">
+                <label for="postContent">Content:</label>
+                <textarea id="postContent" name="postContent" rows="4" cols="50"></textarea>
+                <div id="controls">
+                    <button id="submitPostButton" type="submit">Submit</button>
+                    <button id="cancelButton" type="button">Cancel</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="friendsList">
+            <h2>Friends List</h2>
+            <!-- Dynamically loaded friends will go here -->
+            <ul>
+                <li>Friend 1</li>
+                <li>Friend 2</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Social App</p>
+    </footer>
+</body>
+</html>

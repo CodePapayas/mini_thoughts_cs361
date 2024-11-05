@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="detailed_feed.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div id="userProfile">
+            <img id="profilePicture" src="/images/placeholder.jpg" alt="User Profile Picture">
+            <h2 id="userName">User Name</h2>
+        </div>
+    </header>
+
+    <main>
+        <section id="controls">
+            <form action="/newPostButton" method="get">
+                <button type="submit">New Post</button>
+            </form>
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+            <form action="/" method="get">
+                <button type="submit">Home</button>
+            </form>
+        </section>
+        
+
+        <section id="newsFeed">
+            <h2>News Feed</h2>
+            <!-- Dynamically loaded detailed posts will go here -->
+            <ul id="postList">
+            </ul>
+        </section>
+
+        <section id="friendsList">
+            <h2>Friends List</h2>
+            <!-- Dynamically loaded friends will go here -->
+            <ul>
+                <li>Friend 1</li>
+                <li>Friend 2</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Social App</p>
+    </footer>
+</body>
+
+</html>
