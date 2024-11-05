@@ -37,7 +37,7 @@ main {
 
 article#controls {
     background-color: #ffffff;
-    padding: 15px;
+    padding: 20px;
     border: 2px solid #6699cc;
     border-radius: 10px;
     width: 70%;
@@ -57,6 +57,7 @@ article#controls legend {
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 #controls button:hover {
@@ -65,11 +66,11 @@ article#controls legend {
 
 #newsFeed {
     background-color: #ffffff;
-    padding: 15px;
+    padding: 20px;
     margin: 20px auto;
     width: 70%;
     border: 2px solid #6699cc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 #newsFeed h2 {
@@ -78,17 +79,21 @@ article#controls legend {
 
 .post {
     background-color: #f8f9fa;
-    padding: 10px;
-    border-bottom: 2px dotted #6699cc;
-    margin-bottom: 10px;
+    padding: 20px;
+    border: 1px solid #6699cc;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
 }
 
 #friendsList {
     background-color: #d1d9e6;
-    padding: 15px;
+    padding: 20px;
     width: 25%;
     border: 2px solid #336699;
     margin-left: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 #friendsList h2 {
@@ -103,11 +108,11 @@ article#controls legend {
 #friendsList li {
     margin-bottom: 10px;
     font-weight: bold;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #6699cc;
     border-radius: 5px;
     background-color: #f0f4fa;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 footer {
@@ -120,10 +125,28 @@ footer {
 }
 
 #postList li {
-    list-style-type:disc;
-    padding: 10;
-    margin-bottom: 10px;
-    background-color: #6699cc;
+    list-style-type: disc;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    border: 1px solid #6699cc;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.likeButton {
+    background-color: #336699;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 14px;
     border-radius: 5px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.likeButton:hover {
+    background-color: #003366;
+    transform: translateY(-2px);
 }
