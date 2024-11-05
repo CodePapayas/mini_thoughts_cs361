@@ -77,6 +77,24 @@ app.post('/logout', (req, res) => {
     res.redirect('/');
 });
 
+// Like a post
+app.post('/like/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) {
+            return res.status(404).send('Post not found');
+        }
+
+        post.likes += 1;
+        await post.save();
+
+        res.json({ likes: post.likes });
+    } catch (error) {
+        console.error('Error liking post:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
