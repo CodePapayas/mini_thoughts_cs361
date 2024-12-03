@@ -2,16 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const fetch = require('node-fetch');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const Post = require('./models/post');
+const verifyToken = require('./middleware/jwt_validation');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3005;
 
-// Middleware to parse form data
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -26,9 +29,25 @@ mongoose.connect(process.env.MONGO_URI, {
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
+// Public Routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'home_page.html'));
+    res.sendFile(path.join(__dirname, 'public', 'landing_page.html'));
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'sign_up.html'));
+});
+
+app.get('/detailedFeed', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'detailed_blog.html'));
+});
+
+app.get('/newPostButton', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'new_post.html'));
 });
 
 app.get('/api/posts', async (req, res) => {
@@ -41,30 +60,67 @@ app.get('/api/posts', async (req, res) => {
     }
 });
 
-app.get('/newPostButton', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'new_post.html'));
+// Authentication Routes
+app.post('/signup', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required.' });
+    }
+
+    try {
+        const response = await fetch(`${process.env.AUTH_URL}/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+            res.redirect('/home_page.html'); // Redirect on successful login
+        } else {
+            res.status(response.status).json(data);
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error communicating with the authentication service.' });
+    }
 });
 
-app.get('/detailedFeed', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'detailed_blog.html'));
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password are required.' });
+    }
+
+    try {
+        const response = await fetch(`${process.env.AUTH_URL}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            res.redirect('/home_page.html'); // Redirect on successful login
+        } else {
+            res.status(response.status).json(data);
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error communicating with the authentication service.' });
+    }
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'home_page.html'));
-});
-
-app.post('/submitPost', async (req, res) => {
-    console.log('req.body:', req.body);
+// Protected Routes
+app.post('/submitPost', verifyToken, async (req, res) => {
     const postContent = req.body.content;
 
-    // Create a new Post instance
-    const newPost = new Post({
-        content: postContent
-    });
-    // Save the new post
+    const newPost = new Post({ content: postContent });
+
     try {
         await newPost.save();
-        console.log('New post saved:', newPost);
         res.redirect('/');
     } catch (error) {
         console.error('Error saving new post:', error);
@@ -72,13 +128,7 @@ app.post('/submitPost', async (req, res) => {
     }
 });
 
-app.post('/logout', (req, res) => {
-    // Clear the session data
-    res.redirect('/');
-});
-
-// Like a post
-app.post('/like/:id', async (req, res) => {
+app.post('/like/:id', verifyToken, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         if (!post) {
@@ -95,6 +145,10 @@ app.post('/like/:id', async (req, res) => {
     }
 });
 
+app.post('/logout', (req, res) => {
+    res.redirect('/');
+});
+
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+    console.log(`Server listening on port ${PORT}`);
 });
